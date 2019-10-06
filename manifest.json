@@ -4,5 +4,13 @@
   "version": "1.0.0",
 
   "description": "Nothing suspicius here bro.",
-  "icons": {}
+  "permisions": [
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["contentScript.js"]
+    }
+  ]
 }
