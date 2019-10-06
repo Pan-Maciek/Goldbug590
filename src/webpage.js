@@ -28,7 +28,8 @@
   Element.prototype.getAttribute = function (attrName) {
     const attr = getAttribute.call(this, attrName)
     if (attrName.includes("href") && attr !== null) {
-      const [, hrefDomainName] = attr.match(/^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n?]+)/i)
+      const [, hrefDomainName] = attr.match(/^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n?]+)/i) || []
+      // console.log(hrefDomainName, domainName)
       if (hrefDomainName !== domainName) console.log(attrName, attr)
     }
     return attr
