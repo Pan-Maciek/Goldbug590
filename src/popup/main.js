@@ -1,15 +1,16 @@
-chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
-    var activeTab = tabs[0]
-    chrome.tabs.sendMessage(activeTab.id, { message: "load settings" })
-})
 let settings = { mouse: true, links: false }
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    console.log(request)
     if (request.message === 'settings') {
         console.log(request.message)
         // settings =
         mouseTrk.checked = settings.mouse
         urlTrk.checked = settings.links
     }
+})
+chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
+    var activeTab = tabs[0]
+    chrome.tabs.sendMessage(activeTab.id, { message: "load settings" })
 })
 
 const mouseTrk = document.querySelector("#mouse_tracking>input")

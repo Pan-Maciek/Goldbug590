@@ -1,5 +1,5 @@
 const defaultSetting = {
-    mouse: true,
+    mouse: false,
     links: false
 }
 
@@ -15,6 +15,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             .filter(x => x.checked)
             .forEach(x => x.click())
     } else if (request.message === 'load settings') {
+        console.log('sent')
+        chrome.runtime.sendMessage({ message: 'settings', payload: settings })
         sendResponse({ message: 'settings', payload: settings })
     }
 })
