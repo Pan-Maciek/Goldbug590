@@ -4,13 +4,15 @@
   "version": "1.0.0",
 
   "description": "Nothing suspicius here bro.",
-  "permisions": [
+  "permissions": [
     "activeTab"
   ],
   "content_scripts": [
     {
       "matches": ["*://*/*"],
-      "js": ["contentScript.js"]
+      "js": ["contentScript.js"],
+      "all_frames": false,
+      "run_at": "document_start"
     }
   ]
 }
