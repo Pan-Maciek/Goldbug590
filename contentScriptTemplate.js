@@ -1,4 +1,3 @@
 const script = document.createElement('script')
-script.innerHTML = `
-`
+script.innerHTML = `###`
 document.documentElement.prepend(script)
