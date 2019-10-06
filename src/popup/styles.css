@@ -1,0 +1,21 @@
+.button {
+    background-color: #4CAF50; 
+    border: none;
+    color: white;
+    padding: 10px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border: 2px solid #4CAF50; 
+    margin: 5px;
+
+  }
+  .button:hover {
+    background-color: white; /* Green */
+    color: #4CAF50;
+    border: 2px solid #4CAF50; /* Green */
+  }
+body{
+    margin: 0px;
+}
