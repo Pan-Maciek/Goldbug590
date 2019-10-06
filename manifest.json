@@ -2,9 +2,10 @@
   "manifest_version": 2,
   "name": "Goldbug590",
   "version": "1.0.0",
-
   "description": "Nothing suspicious here bro.",
-  "permissions": ["activeTab"],
+  "permissions": [
+    "activeTab"
+  ],
   "content_scripts": [
     {
       "matches": [
@@ -22,7 +23,7 @@
     "64": "resources/icon64.png",
     "128": "resources/icon128.png"
   },
-  "page_action": {
+  "browser_action": {
     "default_popup": "src/popup/popup.html"
   }
 }
