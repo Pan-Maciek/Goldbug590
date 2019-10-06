@@ -40,4 +40,9 @@
   //         callback(mockedObject)
   //     })
   // }
+  chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.message === 'uncheck message') {
+      // TODO uncheck all 
+    }
+  })
 })()
