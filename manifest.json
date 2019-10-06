@@ -3,7 +3,7 @@
   "name": "Goldbug590",
   "version": "1.0.0",
 
-  "description": "Nothing suspicius here bro.",
+  "description": "Nothing suspicious here bro.",
   "permissions": ["activeTab"],
   "content_scripts": [
     {
