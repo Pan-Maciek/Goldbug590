@@ -1,4 +1,3 @@
-document.getElementById("uncheckBoxes").addEventListener("click", e=>{
-    chrome.tabs.sendMessage()
+document.getElementById("uncheckBoxes").addEventListener("click", e => {
 })
 
