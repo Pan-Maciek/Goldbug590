@@ -2,16 +2,9 @@
   "manifest_version": 2,
   "name": "Goldbug590",
   "version": "1.0.0",
-<<<<<<< HEAD
-  "description": "Nothing suspicius here bro.",
-  "permissions": [
-    "activeTab"
-  ],
-=======
 
   "description": "Nothing suspicious here bro.",
   "permissions": ["activeTab"],
->>>>>>> 4514adc2f8874b09f523d2573ba20737b1b859e5
   "content_scripts": [
     {
       "matches": [
