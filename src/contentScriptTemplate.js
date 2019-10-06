@@ -1,5 +1,5 @@
 const defaultSetting = {
-    mouse: false,
+    mouse: true,
     links: false
 }
 
