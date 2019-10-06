@@ -2,13 +2,18 @@
   "manifest_version": 2,
   "name": "Goldbug590",
   "version": "1.0.0",
-
   "description": "Nothing suspicius here bro.",
-  "permissions": ["activeTab"],
+  "permissions": [
+    "activeTab"
+  ],
   "content_scripts": [
     {
-      "matches": ["*://*/*"],
-      "js": ["src/contentScript.js"],
+      "matches": [
+        "*://*/*"
+      ],
+      "js": [
+        "src/contentScript.js"
+      ],
       "all_frames": false,
       "run_at": "document_start"
     }
@@ -17,5 +22,8 @@
     "16": "resources/icon16.png",
     "64": "resources/icon64.png",
     "128": "resources/icon128.png"
+  },
+  "page_action": {
+    "default_popup": "src/popup/popup.html"
   }
 }
