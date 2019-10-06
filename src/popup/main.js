@@ -7,6 +7,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === 'settings') {
         console.log(request.message)
         // settings =
+        settings = request.payload
         mouseTrk.checked = settings.mouse
         urlTrk.checked = settings.links
     }
