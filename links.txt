@@ -1,3 +1,6 @@
+Information:
 https://clickclickclick.click
-
 http://webkay.robinlinus.com
+
+Regex:
+/^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n?]+)/img
