@@ -40,11 +40,4 @@
   //         callback(mockedObject)
   //     })
   // }
-  chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.message === 'uncheck all') {
-      [...document.querySelectorAll('input:not([required])[type="checkbox"]')]
-      .filter(x => x.checked)
-      .forEach(x => x.click())
-    }
-  })
 })()
