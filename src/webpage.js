@@ -19,9 +19,15 @@ function defineFakeProp(target, property, value) {
     get() { return value }
   })
 }
+
 function fakeMouseEvent(e) {
-  // TODO implement fake properties for of event values screenX, screenY, clientX, clientY, ctrlKey, shiftKey, altKey, metaKey, button, buttons, relatedTarget, pageX, pageY, x, y, offsetX, offsetY, movementX, movementY, fromElement, toElement, layerX, layerY, getModifierState, initMouseEvent
-  return e
+  const proxy = new Proxy(e, {
+    get(target, key) {
+      if (typeof target[key] === 'number') return 0
+      else return target[key]
+    }
+  })
+  return proxy
 }
 
 const addEventListener = EventTarget.prototype.addEventListener
@@ -48,7 +54,7 @@ Element.prototype.getAttribute = function (attrName) {
     }
   }
   if (settings.links) return null
-  else return attr
+  return attr
 }
 
 console.log(settings)

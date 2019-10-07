@@ -1,42 +1,30 @@
+const mouseTrk = document.querySelector("#mouse_tracking>input")
+const urlTrk = document.querySelector("#url_tracking>input")
+const uncheckBoxesBtn = document.getElementById("uncheck_boxes")
+const mouseTrackingLabel = document.getElementById("mouse_tracking")
+const linkTrackingLabel = document.getElementById("url_tracking")
+
 let settings = { mouse: false, links: false }
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    console.log(request)
-    if (request.message === 'settings') {
-        console.log(request.message)
-        // settings =
-        settings = request.payload
+
+chrome.runtime.onMessage.addListener(({ message, payload }) => {
+    if (message === 'settings') {
+        settings = payload
         mouseTrk.checked = settings.mouse
         urlTrk.checked = settings.links
     }
 })
-chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
-    var activeTab = tabs[0]
-    chrome.tabs.sendMessage(activeTab.id, { message: "load settings" })
-})
 
-const mouseTrk = document.querySelector("#mouse_tracking>input")
-const urlTrk = document.querySelector("#url_tracking>input")
+const sendMessageToContentScript = (message, payload) =>
+    chrome.tabs.query({ currentWindow: true, active: true },
+        ([{ id }]) => chrome.tabs.sendMessage(id, { message, payload }))
 
-document.getElementById("uncheck_boxes").addEventListener("click", e => {
-    chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
-        var activeTab = tabs[0]
-        chrome.tabs.sendMessage(activeTab.id, { "message": "uncheck all" })
-    })
-})
-function sendSettings(){
-    chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
-        var activeTab = tabs[0]
-        chrome.tabs.sendMessage(activeTab.id, { message: "settings", payload: settings })
-    })
-}
+sendMessageToContentScript('load settings')
 
-document.getElementById("mouse_tracking").addEventListener("click", e => {
-    settings.mouse = !settings.mouse
-    sendSettings()
-    
-})
-document.getElementById("url_tracking").addEventListener("click", e => {
-    settings.links = !settings.links
-    sendSettings()
-})
+uncheckBoxesBtn.addEventListener("click", e => sendMessageToContentScript('uncheck all'))
 
+const sendSettings = () => sendMessageToContentScript('settings', settings)
+
+const toggleSettings = key => (settings[key] = !settings[key], sendSettings())
+
+mouseTrackingLabel.addEventListener('click', () => toggleSettings('mouse'))
+linkTrackingLabel.addEventListener('click', () => toggleSettings('links'))
