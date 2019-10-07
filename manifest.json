@@ -4,8 +4,12 @@
   "version": "1.0.0",
   "description": "Nothing suspicious here bro.",
   "permissions": [
-    "activeTab"
+    "activeTab", "cookies", "*://*/*"
   ],
+  "background": {
+    "scripts": ["src/background.js"],
+    "persistent": true
+  },
   "content_scripts": [
     {
       "matches": [
