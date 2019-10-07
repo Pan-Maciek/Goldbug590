@@ -3,7 +3,7 @@ const defaultSetting = {
     links: false
 }
 
-const settings = localStorage.getItem('settings') || defaultSetting
+const settings = JSON.parse(localStorage.getItem('settings') || "false") || defaultSetting
 
 const script = document.createElement('script')
 script.innerHTML = `!function(settings){###}(${JSON.stringify(settings)})`
@@ -15,8 +15,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             .filter(x => x.checked)
             .forEach(x => x.click())
     } else if (request.message === 'load settings') {
-        console.log('sent')
         chrome.runtime.sendMessage({ message: 'settings', payload: settings })
         sendResponse({ message: 'settings', payload: settings })
+    } else if (request.message === 'settings') {
+        localStorage.setItem('settings',JSON.stringify(request.payload))
+        document.location.reload()
     }
 })

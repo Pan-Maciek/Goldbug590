@@ -1,4 +1,4 @@
-let settings = { mouse: true, links: false }
+let settings = { mouse: false, links: false }
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     console.log(request)
     if (request.message === 'settings') {
@@ -23,16 +23,20 @@ document.getElementById("uncheck_boxes").addEventListener("click", e => {
         chrome.tabs.sendMessage(activeTab.id, { "message": "uncheck all" })
     })
 })
-document.getElementById("mouse_tracking").addEventListener("click", e => {
+function sendSettings(){
     chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
         var activeTab = tabs[0]
-        chrome.tabs.sendMessage(activeTab.id, { "message": "prevent mouse tracking" })
+        chrome.tabs.sendMessage(activeTab.id, { message: "settings", payload: settings })
     })
+}
+
+document.getElementById("mouse_tracking").addEventListener("click", e => {
+    settings.mouse = !settings.mouse
+    sendSettings()
+    
 })
 document.getElementById("url_tracking").addEventListener("click", e => {
-    chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
-        var activeTab = tabs[0]
-        chrome.tabs.sendMessage(activeTab.id, { "message": "prevent url tracking" })
-    })
+    settings.links = !settings.links
+    sendSettings()
 })
 
